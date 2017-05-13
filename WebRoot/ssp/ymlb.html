@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>页面列表</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="css/css02.css" type="text/css" />
+    <meta name="format-detection" content="telephone=no" />
+	<script src="js/jquery-1.11.1.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class="wrap_ymlb" id="main">
+		<div style="height:56px; width:87%; margin:0 auto" align="center">
+			<input id="search_content" type="text" placeholder="请输入选手姓名和选手编号"  class="input_ymlb" />
+			<a href="#"><img style="position:relative; top:-33px; left:40%;" src="images/ss.png"></a>
+		</div>
+		<div style="height:56px;" align="center" class="btn_ymlb">
+			<input type="button" value="按时间排序" class="btn1_ymlb" />
+			<input type="button" value="按票数排序" class="btn2_ymlb" />
+			<br>
+			<span>温馨提示 ：用户每天投票5次</span>
+		</div>
+        <div style="clear:both"></div>
+		<div class="content_ymlb lanren" align="center">
+			<ul class="hidden" id="main_ul">
+				
+			</ul>
+
+
+			<div style="clear:both"></div>
+<!-- 			<ul class="list">数据加载中，请稍后...</ul> -->
+			<div class="more"><a style="color:#FFFFFF;outline: medium none; " href="javascript:;" onClick="loadingMore()">点击加载更多</a></div>
+		</div>
+		 
+		 <!-- 下一页页码  -->
+		 <input type="hidden" id="page" value="1"/>  
+	</div>
+	
+	<script>
+		var _content = []; //临时存储li循环内容
+		var lanren = {
+			_default:6, //默认显示图片个数
+			_loading:4,  //每次点击按钮后加载的个数
+			init:function(){
+				var lis = $(".lanren .hidden li");
+				$(".lanren ul.list").html("");
+				for(var n=0;n<lanren._default;n++){
+					lis.eq(n).appendTo(".lanren ul.list");
+				}
+				$(".lanren ul.list img").each(function(){
+					$(this).attr('src',$(this).attr('realSrc'));
+				})
+				for(var i=lanren._default;i<lis.length;i++){
+					_content.push(lis.eq(i));
+				}
+				$(".lanren .hidden").html("");
+			},
+			loadMore:function(){
+				var mLis = $(".lanren ul.list li").length;
+				for(var i =0;i<lanren._loading;i++){
+					var target = _content.shift();
+					if(!target){
+						$('.lanren .more').html("<p>全部加载完毕...</p>");
+						break;
+					}
+					$(".lanren ul.list").append(target);
+					$(".lanren ul.list img").eq(mLis+i).each(function(){
+						$(this).attr('src',$(this).attr('realSrc'));
+					});
+				}
+			}
+		}
+// 		lanren.init();
+
+	</script>
+    
+    
+    <script>
+    
+    	/*加载更多*/
+		function loadingMore(){
+		
+	     	$.post("userPicture_findPage",{
+	        	page:$("#page").val(),
+	        	search_content:$("#search_content").val()
+	        },function(result){
+	        
+	        	if(result.message.trim()=="true"){
+		        	each_li(result);
+					$("#page").val(Number($("#page").val())+1);
+	        	}else alert("全部加载完毕。");
+				
+				
+	        });  
+        		
+		}
+		
+		/*获取相片并按票数由高到底排序*/
+		function getPicturesSortByPoll(){
+	     	$.post("userPicture_SortPicturesByPoll",{
+		        	page:$("#page").val(),
+		        	search_content:$("#search_content").val()
+	        },function(result){
+	    	    if(result.message.trim()=="true"){    
+	       	    $("#main_ul").html("");
+	        	   each_li(result);
+				   $("#page").val(Number($("#page").val())+1);
+		        }
+	
+	        }); 		
+		}
+		
+		/*遍历加载图片*/
+	    function each_li(result){
+	      if(result.message.trim()=="true"){
+	        	
+	        var main_ul = $("#main_ul");
+	        		
+	        var pictures = $(result.pictures);
+	        		
+	        for(var i=0;i < pictures.length;i++){
+	        		
+		           main_ul.append('<a href="userPicture_GetPicById?picId='+pictures[i].id+'"><li>'
+								+'<img height="90" src="/wxtp/'+pictures[i].imgUrl+'" alt="">'
+								+'<p class="wz_01" align="left">作品名称: <span>'+pictures[i].zpName+'</span></p>'
+								+'<p class="wz_02 p" align="left">编号: <span>'+pictures[i].noId+'</span></p>'
+								+'<p class="wz_03" align="left"><input type="button" value="投票"/><span>票数:'+pictures[i].poll+'</span></p>'
+								+'</li></a>');     		
+	        		
+	        }
+	        	
+	        	
+	      }
+	    }		
+		    
+    $(document).ready(function(){
+    
+    	/*进入页面执行*/
+        getPicturesSortByPoll();
+        
+        $("#search_content").bind('input propertychange', function() {
+			
+	        /*搜索前设置下一页的值设置为1*/
+			$("#page").val("1");
+			
+		  	$.post("userPicture_SearchPictures",{
+		  		page:$("#page").val(),
+	        	search_content:$("#search_content").val()
+	        },function(result){
+	        
+       		    $("#main_ul").html("");
+	        	each_li(result);
+	
+	        });  
+	        /*搜索完后下一页的值设置为2开始*/
+			$("#page").val("2");
+		
+		});	
+		
+		$(".btn1_ymlb").bind("click",function(){
+	        /*搜索前设置下一页的值设置为1*/
+			$("#page").val("1");		
+		  	$.post("userPicture_SortPicturesByCreateTime",{
+		  		page:$("#page").val(),
+	        	search_content:$("#search_content").val()
+	        },function(result){
+	        
+	    	    if(result.message.trim()=="true"){    
+	       	    $("#main_ul").html("");
+	        	   each_li(result);
+				   $("#page").val(Number($("#page").val())+1);
+		        }
+	
+	        }); 
+	        
+		});
+		
+		$(".btn2_ymlb").click(function(){
+	        /*搜索前设置下一页的值设置为1*/
+			$("#page").val("1");		
+			getPicturesSortByPoll();
+		});	
+        
+    
+    })
+    
+
+    </script>
+</body>
+<script src="../L/js/properties.js" type="text/javascript"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.1.0.js" type="text/javascript"></script><!-- jssdk导入的js -->
+<script src="../L/js/weixin.js" type="text/javascript"></script>
+<script src="wx/fenx_ssp.js" type="text/javascript"></script>
+</html>

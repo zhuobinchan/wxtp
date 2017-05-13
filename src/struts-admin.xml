@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="admin" extends="loginInterceptor" namespace="/">
+	
+		<default-interceptor-ref name="adminInterceptors" />
+	
+		<global-results>
+			<result name="findAll">/admin/main.jsp</result>
+			<result name="findPage">/admin/main.jsp</result>
+			<result name="findPageByMap">/admin/main.jsp</result>
+			<result name="deleteObject" type="json">
+				<param name="root">json</param>
+				<param name="encoding">UTF-8</param>
+			</result>
+			<result name="deleteObjects" type="json">
+				<param name="root">json</param>
+				<param name="encoding">UTF-8</param>
+			</result>
+			<result name="ReturnAjax" type="json">
+				<param name="root">json</param>
+				<param name="encoding">UTF-8</param>
+			</result>
+			<result name="noPoll">/L/tpm.html</result>
+			<result name="noShare">/L/fxm.html</result>					
+			<result name="input">/login.jsp</result>
+			<result name="adminNoLogin" type="redirect">/login.jsp</result>
+			
+		</global-results>
+	
+		<action name="admin_*" class="com.ehighsun.wxtp.commonality.action.AdminLoginAction" method="{1}">
+			<interceptor-ref name="defaultStack"/>
+			<result name="success">/admin/main.jsp</result>
+		</action>
+
+		<action name="adminPicture_*" class="com.ehighsun.wxtp.admin.action.AdminPictureAction" method="{1}">
+			<result name="success">/admin/main.jsp</result>
+		</action>
+		
+		<action name="adminTeam_*" class="com.ehighsun.wxtp.admin.action.AdminTeamAction" method="{1}">
+			<result name="saveObject" type="redirectAction">/admin/adminTeam_findPage?mainPage=adminTeam.jsp&amp;findPageTarget=/admin/adminTeam_findPage&amp;page=${currentPage}</result>
+			<result name="saveOrUpdateObject" type="redirectAction">/admin/adminTeam_findPage?mainPage=adminTeam.jsp&amp;findPageTarget=/admin/adminTeam_findPage&amp;page=${currentPage}</result>
+			<result name="success">/admin/main.jsp</result>
+		</action>
+
+		<action name="adminCompetition_*" class="com.ehighsun.wxtp.admin.action.AdminCompetition" method="{1}">
+			<result name="saveObject" type="redirectAction">/admin/adminCompetition_findPage?page=${currentPage}</result>
+			<result name="saveOrUpdateObject" type="redirectAction">/admin/adminCompetition_findPage?page=${currentPage}</result>
+		</action>
+
+		<action name="adminAwardList_*" class="com.ehighsun.wxtp.admin.action.AdminAwardListAction" method="{1}">
+		</action>
+		
+		<action name="adminAward_*" class="com.ehighsun.wxtp.admin.action.AdminAwardAction" method="{1}">
+			<result name="saveObject" type="redirectAction">/admin/adminAward_findPage?mainPage=AdminAward.jsp&amp;findPageTarget=/admin/adminAward_findPage&amp;page=${currentPage}</result>
+			<result name="saveOrUpdateObject" type="redirectAction">/admin/adminAward_findPage?mainPage=AdminAward.jsp&amp;findPageTarget=/admin/adminAward_findPage&amp;page=${currentPage}</result>
+		</action>
+		
+		<action name="userLotter_*" class="com.ehighsun.wxtp.commonality.action.LotteryAction" method="{1}">
+			<interceptor-ref name="defaultStack"/>
+			<result name="success" type="json">
+				<param name="root">json</param>
+				<param name="encoding">UTF-8</param>
+			</result>		
+			
+			<result name="noInfo">/choujiang/choujiangBefore.jsp</result>
+			
+			<result name="cantLottery" type="json">
+				<param name="root">json</param>
+				<param name="encoding">UTF-8</param>			
+			</result>
+			<result name="input">/L/index.html</result>
+		</action>	
+		
+		<action name="adminOtherAwardList_*" class="com.ehighsun.wxtp.admin.action.AdminOtherAwardListAction" method="{1}">
+		</action>
+		<action name="adminOtherAwardList2_*" class="com.ehighsun.wxtp.admin.action.AdminOtherAwardList2Action" method="{1}">
+		</action>
+		
+		<action name="exportUserByExcel" class="com.ehighsun.wxtp.commonality.action.ExportPollTeamByExcelAction" method="ExportPollTeam">
+			<result name="ExportPollTeam" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">stream</param>
+				<param name="contentDisposition">attachment;filename="${filename}"</param>
+				<param name="bufferSize">1024*1024</param>
+			</result>
+		</action>	
+	</package>
+
+</struts>    

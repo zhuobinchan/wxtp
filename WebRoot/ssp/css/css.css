@@ -1,0 +1,123 @@
+@charset "utf-8";
+*{
+	margin:0;
+	padding:0;
+}
+#wrap{
+	background:#e60021;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	width:100%;
+	min-height: 640px;
+}
+#bt1{
+     background:url(../images/a.png);
+     background-repeat: repeat-x;
+     background-size: 100% 100%;
+     width: 35%;
+     height: 40px;
+     border-radius: 5px;
+     -webkit-border-radius:5px;
+     -moz-border-radius:5px;
+     border: none;
+     color: white;
+     font-size: 16px;
+     
+}
+#bt2{
+     background:url(../images/b.png);
+     background-repeat: repeat-x;
+     background-size: 100% 100%;
+     width: 35%;
+     height: 40px;
+     border-radius: 5px;
+     -webkit-border-radius:5px;
+     -moz-border-radius:5px;
+     border: none;
+     color: white;
+     margin-left: 25px;
+     font-size: 16px;
+}
+#wrap_btn{
+	margin-bottom: 20px;
+}
+a{
+	text-decoration: none;
+}
+.wrap3{
+	background: url(../images/bj3.jpg) no-repeat;
+	background-size: 100% 100%;
+	width: 100%;
+	min-height: 400px;
+	height: auto;
+}
+#btn3-1,#btn3-2,#btn3-3{
+	height: 65px;
+	width: 220px;
+	border: none;
+	font-size: 20px;
+}
+#btn3-1{
+	padding-left:50px;
+	margin-top: 70px;
+	background: url(../images/btn_text_1.png) no-repeat;
+	background-size:100% 100%;
+
+}
+#btn3-2{
+	background:url(../images/btn_text_2.png);
+	background-size: 100% 100%;
+	padding-left: 50px;
+	margin-top: 12px;
+	
+}
+#btn3-3{
+	background: url(../images/btn_text_3.png) no-repeat;
+	background-size:100% 100%;
+	padding-left: 50px;
+	margin-top: 12px;
+	
+}
+#id1 {position:relative; 
+	  top:0; 
+	  left:0;
+	  width:270px;
+	  display:block;}
+#id2 {position:relative;
+	  top:-265px;
+	  left:0;
+	  width:240px;
+	  }
+#btn3_1{
+	background: url(../images/c.png) repeat-x;
+	background-size: 100% 100%;
+	border: none;
+	width: 120px;
+	height: 40px;
+	border-radius: 5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    color: white;
+}
+#btn3_2{
+background: url(../images/c.png) repeat-x;
+	background-size: 100% 100%;
+	border: none;
+	width: 120px;
+	height: 40px;
+	border-radius: 5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    color: white;
+    margin-left:20px;
+}
+#center_btn{
+	position: relative;
+	left: 0;
+	top: -215px;
+}
+#foot_img{
+	position: relative;
+	left: 0;
+	top: -185px;
+}

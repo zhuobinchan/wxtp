@@ -1,0 +1,72 @@
+﻿/* CSS Document */
+
+body { margin: 0px; font-family: 黑体; font-size: 100%; background:#000; }
+img { vertical-align: middle; }
+ul, li, p{ padding:0; margin:0}
+
+.bj{ min-height:600px; width:100%; height:auto; background:url(../images/bj.jpg) no-repeat; background-size:100% 100%}
+.an{ width:60%; margin:0 auto; height:100px; }
+.an_01{float:left; }
+.an_01{ float:right; }
+
+.hdjs{ height:auto; line-height:24px;}
+.hdjs_01{ padding-top:50px;}
+.hdjs_01 strong{ font-size:22px} 
+.hdjs_01 p{ font-size:16px;}
+
+.hdjs_02{ padding-top:20px;}
+.hdjs_02 strong{ font-size:22px} 
+
+.sdjs{ min-height:500px; line-height:24px; font-size:16px;}
+.sdjs_01{ padding-top:50px; }
+.sdjs_01 strong{ font-size:18px;}
+.sdjs_02 p{ font-size:16px;}
+.sdjs_01 img{ width:100%; margin:10px 0;}
+
+.zc{ width:70%; margin:60px auto 10px; font-size:14px; color:#000;}
+.zc_ps { width:70%; line-height:30px; margin:0 auto; margin-top:70px;}
+.zc_ps p{ font-size:18px; color:#fff;}
+.zc_ps strong{ color:#eb6100; }
+
+#shareit {-webkit-user-select: none;display: none; position: absolute;width: 100%;height: 100%;background: rgba(0,0,0,0.85);
+  text-align: center;top: 0;left: 0;z-index: 105;}
+#shareit img {max-width: 100%;}
+.arrow {position: absolute;right: 10%;top: 5%;}
+#share-text {margin-top: 400px;}
+
+/*修改过*/
+.ctd{ font-size:15px; margin:0 auto; padding:0 10% 50px;}
+.ctd_bt { font-size:22px; font-weight:bold; padding:20px 0; width:80px;}
+.ctd li{ list-style:none; width:100%;margin-bottom:20px; height:56px;}
+.dm{ width:78%; height:53px;float:left;}
+.dm a{ color:#000;}
+
+/*修改过*/
+.dm p{ line-height:18.5px;float:left; padding-left:5%; width:60%;overflow:hidden; text-overflow:ellipsis; display: -webkit-box; -webkit-line-clamp:3;-webkit-box-orient: vertical;}
+.dm img{ float:left; border:#0A0A0A 1px solid}
+.tp_tu { width:22%;  display:block;float:right; }
+
+/*修改过*/
+.dm_01{ width:74%; height:53px;float:left; }
+.dm_01 a{ color:#000;}
+.dm_01 p{ line-height:18.5px;float:left; padding-left:5%;  width:60%;overflow:hidden; text-overflow:ellipsis; display: -webkit-box; -webkit-line-clamp:3;-webkit-box-orient: vertical;}
+.dm_01 img{ float:left; border:#0A0A0A 1px solid}
+.pm{ font-size:14px; color:#D30104; float:left;width:26%; line-height:55px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+.mtp{ margin-top:10px;}
+.mtp a{ color:#fff;  background:#ff7906; height:40px;border-radius: 5px;-webkit-border-radius:5px;-moz-border-radius:5px; text-decoration:none; width:60%; display:block; line-height:40px;}
+
+/*添加*/
+.an_new{ width:60%; margin:0 auto; height:100px; font-size:14px; }
+.aniu_01{ margin-top:10px; float:left; width:47%;}
+.aniu_01 a{ color:#fff;  background:#ff7906; height:40px;border-radius: 5px;-webkit-border-radius:5px;-moz-border-radius:5px; text-decoration:none;  display:block; line-height:40px; padding:0 12px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.aniu_02{ margin-top:10px;float:right; margin-left:6%; width:47%;}
+.aniu_02 a{ color:#fff;  background:#e73028; height:40px;border-radius: 5px;-webkit-border-radius:5px;-moz-border-radius:5px; text-decoration:none;  display:block; line-height:40px;padding:0 12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.aniu_03{ margin-top:10px; width:100%;height:40px;}
+.aniu_03 a{ color:#fff;  background:#e73028; height:40px;border-radius: 5px;-webkit-border-radius:5px;-moz-border-radius:5px; text-decoration:none;  display:block; line-height:40px;padding:0 12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+.an_new_02{ width:70%; margin:0 auto; height:100px; font-size:14px; }
+.aniu_04{ margin-top:10px; float:left; width:47%; height:40px;}
+.aniu_04 a{ color:#fff;  background:#ff7906; height:40px;border-radius: 5px;-webkit-border-radius:5px;-moz-border-radius:5px; text-decoration:none;  display:block; line-height:40px; padding:0 12px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.aniu_05{ margin-top:10px;float:right; margin-left:6%; width:47%;height:40px;}
+.aniu_05 a{ color:#fff;  background:#e73028; height:40px;border-radius: 5px;-webkit-border-radius:5px;-moz-border-radius:5px; text-decoration:none;  display:block; line-height:40px;padding:0 12px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+ 	<package name="user" extends="json-default" namespace="/"> 
+		 <!-- 定义默认拦截器 -->
+<!--          <default-interceptor-ref name="myinterceptors" />         -->
+
+		<global-results>
+			<result name="deleteObject" type="json">
+				<param name="root">json</param>
+				<param name="encoding">UTF-8</param>
+			</result>
+			<result name="deleteObjects" type="json">
+				<param name="root">json</param>
+				<param name="encoding">UTF-8</param>
+			</result>
+			<result name="ReturnAjax" type="json">
+				<param name="root">json</param>
+				<param name="encoding">UTF-8</param>
+			</result>
+			<result name="noPoll">/L/tpm.html</result>
+ 			<result name="userNoLogin" type="redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec29c56fdbfeaf07&amp;redirect_uri=http%3a%2f%2fzhuhai.hiooy.com%2fwxtp%2fGetUserInfoAction?targetUrl=${targetUrl}&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=STATE#wechat_redirect</result>
+<!-- 		<result name="userNoLogin" type="redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc7eee0d7cb088852&amp;redirect_uri=http%3a%2f%2fzhuobinchan.tunnel.2bdata.com%2fwxtp%2fGetUserInfoAction?targetUrl=${targetUrl}&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=STATE#wechat_redirect</result> -->
+		</global-results>
+	
+		<action name="user_*" class="com.ehighsun.wxtp.user.action.TeamPollAction" method="{1}">
+			<result name="GetTeamById">/L/sdjs.jsp</result>
+			<result name="CheckRank">/L/pm_lb.jsp</result>
+			<result name="gotoFenX">/L/fenx.jsp</result>
+			<result name="competitionIsEnd">/L/js.html</result>
+		</action>
+		
+		<action name="userUploadPic_*" class="com.ehighsun.wxtp.user.action.UploadPictureAction" method="{1}">
+			<result name="SavePicture">/user/uploadPicture.jsp</result>
+		</action>
+
+		<action name="userPicture_*" class="com.ehighsun.wxtp.user.action.UserPictureAction" method="{1}">
+			<result name="PollPicture">/user/uploadPicture.jsp</result>
+			<result name="GetPicById">/ssp/zpym.jsp</result>
+		</action>
+		
+		<action name="shareMessage_*" class="com.ehighsun.wxtp.user.action.ShareMessageAction" method="{1}"></action>
+		<action name="userCompetition_*" class="com.ehighsun.wxtp.user.action.GetCompetitionAction" method="{1}">
+			<result name="GetCompetitionInfo">/L/hdjs.jsp</result>
+		</action>
+		
+		<action name="userTxxx_*" class="com.ehighsun.wxtp.user.action.AfterWinAwardAction" method="{1}">
+		</action>		
+		<action name="getAwardList_*" class="com.ehighsun.wxtp.user.action.GetAwardListAction" method="{1}">
+		</action>	
+	</package>
+
+</struts>    

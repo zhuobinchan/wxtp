@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+
+<package name="loginInterceptor" extends="json-default" namespace="/">
+    <interceptors>
+        <!-- 定义拦截器 -->
+        <interceptor name="userLoginInterceptors" class="com.ehighsun.wxtp.interceptor.UserLoginInterceptor"/>
+        <interceptor name="adminLoginInterceptors" class="com.ehighsun.wxtp.interceptor.AdminLoginInterceptor"/>
+        <!-- 定义拦截器栈 -->
+        <interceptor-stack name="myinterceptors">
+             <interceptor-ref name="userLoginInterceptors"/>
+      		 <interceptor-ref name="defaultStack"/><!-- 定义了拦截器后，系统默认的拦截器会失效，要手动加上 -->
+        </interceptor-stack>
+        
+         <!-- 定义拦截器栈 -->
+        <interceptor-stack name="adminInterceptors">
+             <interceptor-ref name="adminLoginInterceptors"/>
+      		 <interceptor-ref name="defaultStack"/><!-- 定义了拦截器后，系统默认的拦截器会失效，要手动加上 -->
+        </interceptor-stack>       
+        
+    </interceptors>
+</package>
+
+</struts>

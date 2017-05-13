@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="weixin" extends="json-default" namespace="/">
+	
+		<action name="gradeJsSdkAction" class="com.ehighsun.wxtp.weixin.action.GradeJsSdkAction" method="gradeJsSdk"></action>
+		<action name="GetUserInfoAction" class="com.ehighsun.wxtp.weixin.action.GetUserInfoAction" method="getUserInfo">
+			<result name="input">/L/index.html</result>
+			<result name="error" type="redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec29c56fdbfeaf07&amp;redirect_uri=http%3a%2f%2fzhuhai.hiooy.com%2fwxtp%2fGetUserInfoAction?targetUrl=${targetUrl}&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=STATE</result>
+			<result name="attentionGongZhongHao">/L/ewm.jsp</result>
+			<result name="success" type="redirect">${targetUrl}</result>
+		</action>
+		
+	</package>
+</struts>
